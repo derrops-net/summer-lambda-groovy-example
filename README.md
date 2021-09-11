@@ -15,8 +15,8 @@ export AWS_DERROPS_ROLE="arn:aws:iam::${AWS_ACCOUNT_ID}:role/DerropsLambdaRole"
 And a bucket to store the code and dependencies:
 
 ```bash
-"aws s3 mb s3://${AWS_ACCOUNT_ID}-derrops"
-export AWS_DERROPS_BUCKET = "${AWS_ACCOUNT_ID}-derrops"
+aws s3 mb "s3://${AWS_ACCOUNT_ID}-derrops"
+export AWS_DERROPS_BUCKET = "${AWS_ACCOUNT_ID}-derrops
 ```
 
 You will also need to set your region:
