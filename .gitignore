@@ -34,3 +34,6 @@ out/
 .vscode/
 
 *.swp
+
+# remove the response.json file
+response.json

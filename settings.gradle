@@ -5,4 +5,4 @@ pluginManagement{
     }
 }
 
-rootProject.name = 'hello-spring-lambda'
+rootProject.name = 'summer-lambda-groovy-example'
