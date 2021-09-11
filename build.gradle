@@ -1,0 +1,59 @@
+
+plugins {
+	id 'java'
+	id 'groovy'
+
+	id 'org.springframework.boot' version '2.3.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+
+	id 'com.derrops.autum-lambda' version "1.0-SNAPSHOT"
+}
+
+
+configurations.all {
+    resolutionStrategy.cacheDynamicVersionsFor 1, 'seconds'
+}
+
+group = 'org.derrops'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+}
+
+dependencies {
+
+	implementation('org.codehaus.groovy:groovy-all:3.0.4')
+
+	implementation('org.springframework.boot:spring-boot-starter')
+	implementation('org.springframework.boot:spring-boot-starter-web')
+
+	implementation('io.symphonia:lambda-logging:1.0.1')
+
+	// Java AWS dependencies
+	compileOnly('javax.xml.bind:jaxb-api:2.3.0')
+	implementation('com.sun.activation:javax.activation:1.2.0')
+	compileOnly('com.amazonaws.serverless:aws-serverless-java-container-springboot2:[1.4,)')
+
+}
+
+test {
+	useJUnitPlatform()
+}
+
+autumLambda {
+
+	region = System.getenv('AWS_REGION')
+	bucket = System.getenv('AWS_LAMBDA_BUCKET')
+
+	layer {
+		excludes = ['tomcat-embed-*', 'org.springframework.boot:spring-boot-starter-tomcat-*']
+	}
+
+	function {
+		role =System.getenv('AWS_LAMBDA_ROLE')
+		handler = "org.derrops.StreamLambdaHandler::handleRequest"
+	}
+}
