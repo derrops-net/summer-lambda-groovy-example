@@ -39,6 +39,6 @@ This Lambda handles events in the form of API Gateway, to test the function, it 
 
 
 ```bash
-aws lambda invoke --function-name hello-spring-lambda response.json --payload fileb://event.json
+aws lambda invoke --function-name summer-lambda-groovy-example response.json --payload fileb://event.json
 cat response.json
 ```
