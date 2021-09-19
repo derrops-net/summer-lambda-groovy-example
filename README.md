@@ -25,6 +25,19 @@ You will also need to set your region:
 export AWS_REGION="ap-southeast-2"
 ```
 
+## Create Function
+(Subject to change, may move create function to the describe phase.)
+This plugin will not create the lambda function by default for you, it must already exist, create it by running the following command:
+```bash
+aws lambda create-function \
+    --function-name summer-lambda-groovy-example \
+    --runtime java11 \
+    --zip-file fileb://build/derrops/summer-lambda-groovy-example-0.0.1-SNAPSHOT-lambda.zip \
+    --handler org.derrops.StreamLambdaHandler::handleRequest \
+    --role $AWS_DERROPS_ROLE
+```
+
+
 ## Deploying Lambda
 With the role, bucket and region set, you can now Deploy the function:
 
