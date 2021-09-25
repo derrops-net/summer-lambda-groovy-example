@@ -50,6 +50,6 @@ summerLambda {
 	function {
 		role = System.getenv('AWS_DERROPS_ROLE')
 		handler = "org.derrops.StreamLambdaHandler::handleRequest"
-		timeout = 20
+		timeout = System.getenv('AWS_DERROPS_TIMEOUT') ?: 5
 	}
 }
